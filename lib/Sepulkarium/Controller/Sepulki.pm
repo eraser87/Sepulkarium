@@ -33,7 +33,7 @@ sub index :Path :Args(0) {
 
 =head1 AUTHOR
 
-eraser,,,
+Vladimir V. Predekha
 
 =head1 LICENSE
 
