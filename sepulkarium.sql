@@ -16,9 +16,9 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-CREATE DATABASE IF NOT EXISTS 'sepulkarium';
+CREATE DATABASE IF NOT EXISTS sepulkarium;
 
-GRANT ALL ON 'sepulkarium.*' TO 'sepulator@localhost';
+GRANT ALL ON sepulkarium.* TO sepulator@localhost;
 
 FLUSH PRIVILEGES;
 
