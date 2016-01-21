@@ -1,4 +1,4 @@
-package Sepulkarium::Controller::Sepulki;
+package Sepulkarium::Controller::Sepulkariums;
 use Moose;
 use namespace::autoclean;
 
@@ -6,7 +6,7 @@ BEGIN { extends 'Catalyst::Controller'; }
 
 =head1 NAME
 
-Sepulkarium::Controller::Sepulki - Catalyst Controller
+Sepulkarium::Controller::Sepulkaria - Catalyst Controller
 
 =head1 DESCRIPTION
 
@@ -24,7 +24,7 @@ Catalyst Controller.
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
-    $c->response->body('Matched Sepulkarium::Controller::Sepulki in Sepulki.');
+    $c->response->body('Matched Sepulkarium::Controller::Sepulkariums in Sepulkariums.');
 }
 
 
@@ -33,7 +33,7 @@ sub index :Path :Args(0) {
 
 =head1 AUTHOR
 
-Vladimir V. Predekha
+eraser,,,
 
 =head1 LICENSE
 
