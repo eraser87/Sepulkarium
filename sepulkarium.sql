@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.6.27, for debian-linux-gnu (i686)
 --
--- Host: localhost    Database: sepulkarium
+-- Host: localhost    Database: sepulkariumdb
 -- ------------------------------------------------------
 -- Server version	5.6.27-2
 
@@ -15,22 +15,50 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+DROP DATABASE IF EXISTS `sepulkariumdb`;
 
-CREATE DATABASE IF NOT EXISTS sepulkarium;
+CREATE DATABASE `sepulkariumdb`;
 
-GRANT ALL ON sepulkarium.* TO sepulator@localhost;
+GRANT ALL PRIVILEGES ON `sepulkariumdb`.* TO sepulator@'localhost' IDENTIFIED BY '';
 
-FLUSH PRIVILEGES;
-
-USE 'sepulkarium';
-
+USE `sepulkariumdb`;
 --
--- Table structure for table `sepulkaria`
+-- Table structure for table `sepulkas`
 --
 
+DROP TABLE IF EXISTS `sepulkas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE IF NOT EXISTS `sepulkaria` (
+CREATE TABLE `sepulkas` (
+  `sepulka_id` int(11) NOT NULL,
+  `name` text,
+  `size` text,
+  `colour` text,
+  `sepulkarium_id` int(11) NOT NULL,
+  PRIMARY KEY (`sepulka_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sepulkas`
+--
+
+LOCK TABLES `sepulkas` WRITE;
+/*!40000 ALTER TABLE `sepulkas` DISABLE KEYS */;
+INSERT INTO `sepulkas` VALUES (1,'sep1','small','green',1),(2,'sep2','medium','red',1),(3,'sep3','big','blue',2);
+/*!40000 ALTER TABLE `sepulkas` ENABLE KEYS */;
+ALTER TABLE `sepulkas`
+ADD CONSTRAINT `sepulka_ibfk_2` FOREIGN KEY (`sepulkarium_id`) REFERENCES `sepulkariums` (`sepulkarium_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sepulkariums`
+--
+
+DROP TABLE IF EXISTS `sepulkariums`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sepulkariums` (
   `sepulkarium_id` int(11) NOT NULL,
   `name` text,
   PRIMARY KEY (`sepulkarium_id`)
@@ -38,39 +66,13 @@ CREATE TABLE IF NOT EXISTS `sepulkaria` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `sepulkaria`
+-- Dumping data for table `sepulkariums`
 --
 
-LOCK TABLES `sepulkaria` WRITE;
-/*!40000 ALTER TABLE `sepulkaria` DISABLE KEYS */;
-INSERT INTO `sepulkaria` VALUES (1,'1st sepulkarium'),(2,'2nd sepulkarium');
-/*!40000 ALTER TABLE `sepulkaria` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `sepulki`
---
-
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE IF NOT EXISTS `sepulki` (
-  `sepulka_id` int(11) NOT NULL,
-  `name` text,
-  `size` text,
-  `colour` text,
-  `sepulkarium_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`sepulka_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sepulki`
---
-
-LOCK TABLES `sepulki` WRITE;
-/*!40000 ALTER TABLE `sepulki` DISABLE KEYS */;
-INSERT INTO `sepulki` VALUES (1,'sep1','small','green',1),(2,'sep2','medium','red',1),(3,'sep3','big','blue',2);
-/*!40000 ALTER TABLE `sepulki` ENABLE KEYS */;
+LOCK TABLES `sepulkariums` WRITE;
+/*!40000 ALTER TABLE `sepulkariums` DISABLE KEYS */;
+INSERT INTO `sepulkariums` VALUES (1,'1st sepulkarium'),(2,'2nd sepulkarium');
+/*!40000 ALTER TABLE `sepulkariums` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -82,4 +84,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-01-18 14:54:36
+-- Dump completed on 2016-01-21 10:02:42
