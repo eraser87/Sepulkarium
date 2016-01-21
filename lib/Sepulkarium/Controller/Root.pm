@@ -26,13 +26,13 @@ Sepulkarium::Controller::Root - Root Controller for Sepulkarium
 
 The root page (/)
 
+Главная страница
+
 =cut
 
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
-
-    # Hello World
-    $c->response->body( $c->welcome_message );
+    $c->stash(template => 'crud.tt2');
 }
 
 =head2 default
