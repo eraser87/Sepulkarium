@@ -16,7 +16,7 @@
             <td>[% sepulka.name %]</td>
             <td>[% sepulka.size %]</td>
             <td>[% sepulka.colour %]</td>
-            <td>[% sepulka.sepulkarium_id %]</td>
+            <td>[% sepulka.sepulkarium_name %]</td>
         </tr>
     [% END -%]
 </table>

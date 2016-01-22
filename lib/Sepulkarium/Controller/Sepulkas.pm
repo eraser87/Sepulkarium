@@ -32,6 +32,17 @@ sub index :PathPart('sepulkas') :Chained('/') :Args(0) {
 }
 
 
+=head2 add
+
+Выводим форму добавления сепулек
+
+=cut
+
+sub add :PathPart('add') :Chained('index') :Args(0) {
+    my ( $self, $c ) = @_;
+    $c->stash(template => 'sepulkas/add.tt2');
+}
+
 
 =encoding utf8
 
