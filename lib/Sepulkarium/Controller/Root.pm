@@ -26,13 +26,10 @@ Sepulkarium::Controller::Root - Root Controller for Sepulkarium
 
 The root page (/)
 
-Главная страница
-
 =cut
 
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
-    $c->stash(template => 'crud.tt2');
 }
 
 =head2 default
@@ -54,6 +51,15 @@ Attempt to render a view, if needed.
 =cut
 
 sub end : ActionClass('RenderView') {}
+
+=head2 main_page
+Вывод главной страницы
+=cut
+
+sub main_page :Path :Args(0) {
+    my ( $self, $c ) = @_;
+    $c->stash(template => 'crud.tt2');
+}
 
 =head1 AUTHOR
 

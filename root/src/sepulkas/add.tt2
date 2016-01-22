@@ -4,9 +4,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 [% META title = 'Добавление сепульки' -%]
+<head>
+    <title>[% template.title %]</title>
+</head>
 
-<title>
-    [% template.title %]
-</title>
-
-
+<body>
+    <table>
+        <tr>
+            <td>Название</td>
+            <td><input type="text" name="name"></td>
+        </tr>
+        <tr>
+            <td>Размер</td>
+            <td><input type="text" name="size"></td>
+        </tr>
+        <tr>
+            <td>Цвет</td>
+            <td><input type="text" name="colour"></td>
+        </tr>
+        <tr>
+            <td>Сепулькарий</td>
+            <td>
+                <select name="sepulkarium">
+                <option disabled>Выберите сепулькарий</option>
+                [% FOREACH sepulkarium_id IN sepulkas %]
+                    <option value="[% sepulka.sepulkarium_id %]">[% sepulka.sepulkarium_name %]</option>
+                [% END %]
+            </td>
+        </tr>
+    </table>
+</body>

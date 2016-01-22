@@ -17,20 +17,19 @@ Catalyst Controller.
 =cut
 
 
-=head2 index
+=head2 list
 
 Выводим список сепулек.
 
 =cut
 
-sub index :PathPart('sepulkas') :Chained('/') :Args(0) {
+sub list :Chained('/') :PathPart('sepulkas') :Args(0) {
     my ( $self, $c ) = @_;
-    
+
     $c->stash(sepulkas => [$c->model('DB::Sepulka')->all]);
 
     $c->stash(template => 'sepulkas/list.tt2');
 }
-
 
 =head2 add
 
@@ -38,9 +37,12 @@ sub index :PathPart('sepulkas') :Chained('/') :Args(0) {
 
 =cut
 
-sub add :PathPart('add') :Chained('index') :Args(0) {
+sub add :Chained('list') :PathPart('add') :Args(0) {
     my ( $self, $c ) = @_;
-    $c->stash(template => 'sepulkas/add.tt2');
+
+    #$c->stash(template => 'sepulkas/add.tt2');
+    
+    $c->response->body($c->stash->{'Hello World'});
 }
 
 
