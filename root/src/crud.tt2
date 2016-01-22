@@ -14,10 +14,10 @@
 	<table>
 		<tr>
 			<td>
-				<a href="[% c.uri_for('/sepulkas/list') %]">Сепульки</a>
+				<a href="[% c.uri_for('sepulkas').path_query %]">Сепульки</a>
 			</td>
 			<td>
-                <a href="[% c.uri_for('/sepulkariums/list') %]">Сепулькарии</a>
+                <a href="[% c.uri_for('sepulkariums').path_query %]">Сепулькарии</a>
             </td>
 		</tr>
 	</table>

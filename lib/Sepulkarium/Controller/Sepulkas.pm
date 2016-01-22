@@ -19,12 +19,16 @@ Catalyst Controller.
 
 =head2 index
 
+Выводим список сепулек.
+
 =cut
 
-sub index :Path :Args(0) {
+sub index :PathPart('sepulkas') :Chained('/') :Args(0) {
     my ( $self, $c ) = @_;
+    
+    $c->stash(sepulkas => [$c->model('DB::Sepulka')->all]);
 
-    $c->response->body('Matched Sepulkarium::Controller::Sepulkas in Sepulkas.');
+    $c->stash(template => 'sepulkas/list.tt2');
 }
 
 

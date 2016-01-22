@@ -10,7 +10,6 @@ __PACKAGE__->config(
         dsn => 'dbi:mysql:sepulkariumdb',
         user => 'sepulator',
         password => '',
-        mysql_enable_utf8 => 1,
         AutoCommit => q{1},
     }
 );

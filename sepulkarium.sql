@@ -23,13 +23,13 @@ GRANT ALL PRIVILEGES ON `sepulkariumdb`.* TO sepulator@'localhost' IDENTIFIED BY
 
 USE `sepulkariumdb`;
 --
--- Table structure for table `sepulkas`
+-- Table structure for table `sepulka`
 --
 
-DROP TABLE IF EXISTS `sepulkas`;
+DROP TABLE IF EXISTS `sepulka`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `sepulkas` (
+CREATE TABLE `sepulka` (
   `sepulka_id` int(11) NOT NULL,
   `name` text,
   `size` text,
@@ -40,25 +40,25 @@ CREATE TABLE `sepulkas` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `sepulkas`
+-- Dumping data for table `sepulka`
 --
 
-LOCK TABLES `sepulkas` WRITE;
-/*!40000 ALTER TABLE `sepulkas` DISABLE KEYS */;
-INSERT INTO `sepulkas` VALUES (1,'sep1','small','green',1),(2,'sep2','medium','red',1),(3,'sep3','big','blue',2);
-/*!40000 ALTER TABLE `sepulkas` ENABLE KEYS */;
-ALTER TABLE `sepulkas`
-ADD CONSTRAINT `sepulka_ibfk_2` FOREIGN KEY (`sepulkarium_id`) REFERENCES `sepulkariums` (`sepulkarium_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+LOCK TABLES `sepulka` WRITE;
+/*!40000 ALTER TABLE `sepulka` DISABLE KEYS */;
+INSERT INTO `sepulka` VALUES (1,'sep1','small','green',1),(2,'sep2','medium','red',1),(3,'sep3','big','blue',2);
+/*!40000 ALTER TABLE `sepulka` ENABLE KEYS */;
+ALTER TABLE `sepulka`
+ADD CONSTRAINT `sepulka_ibfk_2` FOREIGN KEY (`sepulkarium_id`) REFERENCES `sepulkarium` (`sepulkarium_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `sepulkariums`
+-- Table structure for table `sepulkarium`
 --
 
-DROP TABLE IF EXISTS `sepulkariums`;
+DROP TABLE IF EXISTS `sepulkarium`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `sepulkariums` (
+CREATE TABLE `sepulkarium` (
   `sepulkarium_id` int(11) NOT NULL,
   `name` text,
   PRIMARY KEY (`sepulkarium_id`)
@@ -66,13 +66,13 @@ CREATE TABLE `sepulkariums` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `sepulkariums`
+-- Dumping data for table `sepulkarium`
 --
 
-LOCK TABLES `sepulkariums` WRITE;
-/*!40000 ALTER TABLE `sepulkariums` DISABLE KEYS */;
-INSERT INTO `sepulkariums` VALUES (1,'1st sepulkarium'),(2,'2nd sepulkarium');
-/*!40000 ALTER TABLE `sepulkariums` ENABLE KEYS */;
+LOCK TABLES `sepulkarium` WRITE;
+/*!40000 ALTER TABLE `sepulkarium` DISABLE KEYS */;
+INSERT INTO `sepulkarium` VALUES (1,'1st sepulkarium'),(2,'2nd sepulkarium');
+/*!40000 ALTER TABLE `sepulkarium` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

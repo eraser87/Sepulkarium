@@ -21,7 +21,7 @@ Catalyst Controller.
 
 =cut
 
-sub index :Path :Args(0) {
+sub index :PathPart('sepulkariums') :Chained('/') :Args(0) {
     my ( $self, $c ) = @_;
 
     $c->response->body('Matched Sepulkarium::Controller::Sepulkariums in Sepulkariums.');
