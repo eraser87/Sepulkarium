@@ -26,10 +26,11 @@
             <td>Сепулькарий</td>
             <td>
                 <select name="sepulkarium">
-                <option disabled>Выберите сепулькарий</option>
-                [% FOREACH sepulkarium_id IN sepulkas %]
-                    <option value="[% sepulka.sepulkarium_id %]">[% sepulka.sepulkarium_name %]</option>
-                [% END %]
+                    <option>Выберите сепулькарий</option>
+                    [% FOREACH sepulkarium IN sepulkariums %]
+                        <option value="[% sepulkarium.sepulkarium_id %]">[% sepulkarium.name %]</option>
+                    [% END %]
+                </select>
             </td>
         </tr>
     </table>

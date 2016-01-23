@@ -14,7 +14,7 @@
 	<table>
 		<tr>
 			<td>
-				<a href="[% c.uri_for('sepulkas').path_query %]">Сепульки</a>
+				<a href="[% c.uri_for('sepulkas/list').path_query %]">Сепульки</a>
 			</td>
 			<td>
                 <a href="[% c.uri_for('sepulkariums').path_query %]">Сепулькарии</a>

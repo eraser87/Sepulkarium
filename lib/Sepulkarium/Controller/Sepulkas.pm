@@ -16,6 +16,17 @@ Catalyst Controller.
 
 =cut
 
+=head2 base
+
+Базовый Chained метод
+
+=cut
+
+sub base :Chained('/') :PathPart('sepulkas') :CaptureArgs(0) {
+    my ( $self, $c ) = @_;
+
+    $c->stash(resultset => $c->model('DB::Sepulka'));
+}
 
 =head2 list
 
@@ -23,10 +34,10 @@ Catalyst Controller.
 
 =cut
 
-sub list :Chained('/') :PathPart('sepulkas') :Args(0) {
+sub list :Chained('base') :PathPart('list') :Args(0) {
     my ( $self, $c ) = @_;
 
-    $c->stash(sepulkas => [$c->model('DB::Sepulka')->all]);
+    $c->stash(sepulkas => [$c->stash->{resultset}->all]);
 
     $c->stash(template => 'sepulkas/list.tt2');
 }
@@ -37,12 +48,12 @@ sub list :Chained('/') :PathPart('sepulkas') :Args(0) {
 
 =cut
 
-sub add :Chained('list') :PathPart('add') :Args(0) {
+sub add :Chained('base') :PathPart('add') :Args(0) {
     my ( $self, $c ) = @_;
-
-    #$c->stash(template => 'sepulkas/add.tt2');
     
-    $c->response->body($c->stash->{'Hello World'});
+    $c->stash(sepulkariums => [$c->model('DB::Sepulkarium')->all]);
+
+    $c->stash(template => 'sepulkas/add.tt2');
 }
 
 
