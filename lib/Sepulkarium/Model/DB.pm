@@ -11,6 +11,7 @@ __PACKAGE__->config(
         user => 'sepulator',
         password => '',
         AutoCommit => q{1},
+        mysql_enable_utf8 => 1,
     }
 );
 

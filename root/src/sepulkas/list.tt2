@@ -17,6 +17,8 @@
             <td>[% sepulka.size %]</td>
             <td>[% sepulka.colour %]</td>
             <td>[% sepulka.sepulkarium_name %]</td>
+            <td><a href="[% c.uri_for(c.controller.action_for('edit'), [sepulka.sepulka_id]) %]">Редактировать</a></td>
+            <td><a href="[% c.uri_for(c.controller.action_for('remove'), [sepulka.sepulka_id]) %]">Удалить</a></td>
         </tr>
     [% END -%]
 </table>

@@ -30,7 +30,7 @@ DROP TABLE IF EXISTS `sepulka`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sepulka` (
-  `sepulka_id` int(11) NOT NULL,
+  `sepulka_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text,
   `size` text,
   `colour` text,

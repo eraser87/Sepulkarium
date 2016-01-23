@@ -3,15 +3,15 @@
     %]"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
-[% META title = 'Добавление сепульки' -%]
+[% META title = 'Редактировать сепульки' -%]
 
-<form method="post" action="[% c.uri_for(c.controller.action_for('add_do')) %]">
+<form method="post" action="[% c.uri_for_action(c.controller.action_for('edit_do')) %]">
     <head>
         <title>[% template.title %]</title>
     </head>
 
     <body>
         [% INCLUDE 'sepulkas/edit_table.tt2' %]
-        <input type="submit" name="Submit" value="Добавить">
+        <input type="submit" name="Submit" value="Готово">
     </body>
 </form>

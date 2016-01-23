@@ -1,7 +1,6 @@
 package Sepulkarium::Controller::Sepulkas;
 use Moose;
 use namespace::autoclean;
-
 BEGIN { extends 'Catalyst::Controller'; }
 
 =head1 NAME
@@ -25,7 +24,8 @@ Catalyst Controller.
 sub base :Chained('/') :PathPart('sepulkas') :CaptureArgs(0) {
     my ( $self, $c ) = @_;
 
-    $c->stash(resultset => $c->model('DB::Sepulka'));
+    $c->stash(sepulkas_resultset => $c->model('DB::Sepulka'));
+    $c->stash(sepulkariums_resultset => $c->model('DB::Sepulkarium'));
 }
 
 =head2 list
@@ -37,10 +37,11 @@ sub base :Chained('/') :PathPart('sepulkas') :CaptureArgs(0) {
 sub list :Chained('base') :PathPart('list') :Args(0) {
     my ( $self, $c ) = @_;
 
-    $c->stash(sepulkas => [$c->stash->{resultset}->all]);
+    $c->stash(sepulkas => [$c->stash->{sepulkas_resultset}->all]);
 
     $c->stash(template => 'sepulkas/list.tt2');
 }
+
 
 =head2 add
 
@@ -51,11 +52,107 @@ sub list :Chained('base') :PathPart('list') :Args(0) {
 sub add :Chained('base') :PathPart('add') :Args(0) {
     my ( $self, $c ) = @_;
     
-    $c->stash(sepulkariums => [$c->model('DB::Sepulkarium')->all]);
+    $c->stash(sepulkariums => [$c->stash->{sepulkariums_resultset}->all]);
 
     $c->stash(template => 'sepulkas/add.tt2');
 }
 
+
+=head2 add_do
+
+Добавляем сепульку в базу
+
+=cut
+
+sub add_do :Chained('base') :PathPart('add_do') :Args(0) {
+    my ( $self, $c ) = @_;
+    
+    my $name = $c->request->params->{name};
+    my $size = $c->request->params->{size};
+    my $colour = $c->request->params->{colour};
+    my $sepulkarium_id = $c->request->params->{sepulkarium_id};
+    
+    my $sepulka = $c->model('DB::Sepulka')->create({
+                name   => $name,
+                size  => $size,
+                colour  => $colour,
+                sepulkarium_id => $sepulkarium_id,
+            });
+    
+    $c->stash->{status_msg} = "Сепулька добавлена";
+    
+    $c->res->redirect($c->uri_for('list'));
+}
+
+
+=head2 object
+
+Выбираем сепульку для удаление или редактирования
+
+=cut
+
+sub object :Chained('base') :PathPart('id') :CaptureArgs(1) {
+    my ($self, $c, $sepulka_id) = @_;
+    
+    $c->stash(sepulka => $c->stash->{sepulkas_resultset}->find($sepulka_id));
+}
+
+
+=head2 remove
+
+Удаляем сепульку
+
+=cut
+
+sub remove :Chained('object') :PathPart('remove') :Args(0) {
+    my ($self, $c) = @_;
+
+    $c->stash->{sepulka}->delete;
+
+     $c->response->redirect($c->uri_for($self->action_for('list')));
+}
+
+
+=head2 edit
+
+Выводим форму редактирования сепульки
+
+=cut
+
+sub edit :Chained('object') :PathPart('edit') :Args(0) {
+    my ($self, $c) = @_;
+    
+    $c->stash(sepulkariums => [$c->stash->{sepulkariums_resultset}->all]);
+    $c->stash(template => 'sepulkas/edit.tt2');
+}
+
+
+=head2 edit_do
+
+Записываем изменения
+
+=cut
+
+sub edit_do :Chained('base') :PathPart('edit_do') :Args(0) {
+    my ( $self, $c ) = @_;
+    
+    my $sepulka_id = $c->request->params->{sepulka_id}; 
+    my $name = $c->request->params->{name};
+    my $size = $c->request->params->{size};
+    my $colour = $c->request->params->{colour};
+    my $sepulkarium_id = $c->request->params->{sepulkarium_id};
+
+    my $sepulka = $c->model('DB::Sepulka')->find({sepulka_id => $sepulka_id})->update({
+                name   => $name || undef,
+                size  => $size || undef,
+                colour  => $colour || undef,
+                sepulkarium_id => $sepulkarium_id,
+            });
+
+    $c->stash->{status_msg} = "Сепулька изменена";
+
+    $c->res->redirect($c->uri_for('list'));
+}
 
 =encoding utf8
 
