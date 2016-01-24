@@ -1,0 +1,21 @@
+[% META title = 'Сепулькарии' -%]
+
+<title>
+    [% template.title %]
+</title>
+<table id="list">
+    <tr><th>Название</th></tr>
+    [% FOREACH sepulkarium IN sepulkariums -%]
+        <tr>
+            <td>[% sepulkarium.name %]</td>
+            <td><a href="[% c.uri_for(c.controller.action_for('edit'), [sepulkarium.sepulkarium_id]) %]">Редактировать</a></td>
+            <td><a href="[% c.uri_for(c.controller.action_for('remove'), [sepulkarium.sepulkarium_id]) %]">Удалить</a></td>
+        </tr>
+    [% END -%]
+    <tr>
+        <td>
+            <a href="[% c.uri_for(c.controller.action_for('add')) %]">Добавить сепулькарий</a>
+        </td>
+    </tr>
+</table>
+

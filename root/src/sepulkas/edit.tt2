@@ -1,17 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" [%#
-    %]"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
 [% META title = 'Редактировать сепульки' -%]
 
-<form method="post" action="[% c.uri_for_action(c.controller.action_for('edit_do')) %]">
+<form method="post" action="[% c.uri_for_action(c.controller.action_for('edit')) %]">
     <head>
         <title>[% template.title %]</title>
     </head>
 
     <body>
         [% INCLUDE 'sepulkas/edit_table.tt2' %]
-        <input type="submit" name="Submit" value="Готово">
+        <table>
+            <tr>
+                <td><input type="submit" name="Submit" value="Изменить"></td>
+                <td>
+                    <a href="[% c.uri_for(c.controller.action_for('list')) %]">
+                        <input type="button" name="cancel"  value="Отмена">
+                    </a>
+                </td>
+            </tr>
+        </table>
     </body>
 </form>

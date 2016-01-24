@@ -1,15 +1,15 @@
-[% META title = 'Добавление сепульки' -%]
+[% META title = 'Редактировать сепулькария' -%]
 
-<form method="post" action="[% c.uri_for(c.controller.action_for('add')) %]">
+<form method="post" action="[% c.uri_for_action(c.controller.action_for('edit')) %]">
     <head>
         <title>[% template.title %]</title>
     </head>
 
     <body>
-        [% INCLUDE 'sepulkas/edit_table.tt2' %]
+        [% INCLUDE 'sepulkariums/edit_table.tt2' %]
         <table>
             <tr>
-                <td><input type="submit" name="Submit" value="Добавить"></td>
+                <td><input type="submit" name="Submit" value="Изменить"></td>
                 <td>
                     <a href="[% c.uri_for(c.controller.action_for('list')) %]">
                         <input type="button" name="cancel"  value="Отмена">

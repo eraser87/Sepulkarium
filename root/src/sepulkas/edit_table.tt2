@@ -1,7 +1,6 @@
 <table>
     <tr>
-        <td>ID</td>
-        <td><input type="text" name="sepulka_id" value="[% sepulka.sepulka_id || '' | html %]"></td>
+        <td><input type="text" name="sepulka_id" hidden="true" value="[% sepulka.sepulka_id || '' | html %]"></td>
     </tr>
     <tr>
         <td>Название</td>
@@ -20,7 +19,11 @@
         <td>
             <select name="sepulkarium_id">
                 [% FOREACH sepulkarium IN sepulkariums %]
-                    <option value="[% sepulkarium.sepulkarium_id | html%]">[% sepulkarium.name | html%]</option>
+                    [% IF sepulkarium.sepulkarium_id == sepulka.sepulkarium_id %]
+                        <option selected="selected" value="[% sepulkarium.sepulkarium_id | html%]">[% sepulkarium.name | html%]</option>
+                    [% ELSE %]
+                        <option value="[% sepulkarium.sepulkarium_id | html%]">[% sepulkarium.name | html%]</option>
+                    [% END %]
                 [% END %]
             </select>
         </td>

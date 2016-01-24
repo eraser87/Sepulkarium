@@ -30,7 +30,7 @@ sub base :Chained('/') :PathPart('sepulkas') :CaptureArgs(0) {
 
 =head2 list
 
-Выводим список сепулек.
+Вывод списка сепулек.
 
 =cut
 
@@ -45,49 +45,37 @@ sub list :Chained('base') :PathPart('list') :Args(0) {
 
 =head2 add
 
-Выводим форму добавления сепулек
+Добавление сепульки
 
 =cut
 
 sub add :Chained('base') :PathPart('add') :Args(0) {
     my ( $self, $c ) = @_;
     
+    if ($c->req->method eq 'POST') {
+        my $name = $c->request->params->{name};
+        my $size = $c->request->params->{size};
+        my $colour = $c->request->params->{colour};
+        my $sepulkarium_id = $c->request->params->{sepulkarium_id};
+
+        my $sepulka = $c->stash->{sepulkas_resultset}->create({
+                    name   => $name,
+                    size  => $size,
+                    colour  => $colour,
+                    sepulkarium_id => $sepulkarium_id,
+                });
+    
+        $c->res->redirect($c->uri_for('list'));
+    }
     $c->stash(sepulkariums => [$c->stash->{sepulkariums_resultset}->all]);
 
     $c->stash(template => 'sepulkas/add.tt2');
 }
 
 
-=head2 add_do
-
-Добавляем сепульку в базу
-
-=cut
-
-sub add_do :Chained('base') :PathPart('add_do') :Args(0) {
-    my ( $self, $c ) = @_;
-    
-    my $name = $c->request->params->{name};
-    my $size = $c->request->params->{size};
-    my $colour = $c->request->params->{colour};
-    my $sepulkarium_id = $c->request->params->{sepulkarium_id};
-    
-    my $sepulka = $c->model('DB::Sepulka')->create({
-                name   => $name,
-                size  => $size,
-                colour  => $colour,
-                sepulkarium_id => $sepulkarium_id,
-            });
-    
-    $c->stash->{status_msg} = "Сепулька добавлена";
-    
-    $c->res->redirect($c->uri_for('list'));
-}
-
-
 =head2 object
 
-Выбираем сепульку для удаление или редактирования
+Выбор сепульки для удаления или редактирования
 
 =cut
 
@@ -100,7 +88,7 @@ sub object :Chained('base') :PathPart('id') :CaptureArgs(1) {
 
 =head2 remove
 
-Удаляем сепульку
+Удаление сепульки
 
 =cut
 
@@ -109,50 +97,49 @@ sub remove :Chained('object') :PathPart('remove') :Args(0) {
 
     $c->stash->{sepulka}->delete;
 
-     $c->response->redirect($c->uri_for($self->action_for('list')));
+    $c->response->redirect($c->uri_for($self->action_for('list')));
 }
 
 
 =head2 edit
 
-Выводим форму редактирования сепульки
+Редактирование сепульки
 
 =cut
 
 sub edit :Chained('object') :PathPart('edit') :Args(0) {
     my ($self, $c) = @_;
     
+    if ($c->req->method eq 'POST') {
+        my $sepulka_id = $c->request->params->{sepulka_id};
+        my $name = $c->request->params->{name};
+        my $size = $c->request->params->{size};
+        my $colour = $c->request->params->{colour};
+        my $sepulkarium_id = $c->request->params->{sepulkarium_id};
+
+        my $sepulka = $c->stash->{sepulkas_resultset}->find({sepulka_id => $sepulka_id})->update({
+                    name   => $name || undef,
+                    size  => $size || undef,
+                    colour  => $colour || undef,
+                    sepulkarium_id => $sepulkarium_id,
+                });
+
+        $c->res->redirect($c->uri_for('list'));
+    }
+    
     $c->stash(sepulkariums => [$c->stash->{sepulkariums_resultset}->all]);
-    $c->stash(template => 'sepulkas/edit.tt2');
+
+    $c->stash(template => 'sepulkas/edit.tt2') ;
 }
 
+=head2
 
-=head2 edit_do
-
-Записываем изменения
+End method
 
 =cut
 
-sub edit_do :Chained('base') :PathPart('edit_do') :Args(0) {
-    my ( $self, $c ) = @_;
-    
-    my $sepulka_id = $c->request->params->{sepulka_id}; 
-    my $name = $c->request->params->{name};
-    my $size = $c->request->params->{size};
-    my $colour = $c->request->params->{colour};
-    my $sepulkarium_id = $c->request->params->{sepulkarium_id};
+sub end : ActionClass('RenderView') {}
 
-    my $sepulka = $c->model('DB::Sepulka')->find({sepulka_id => $sepulka_id})->update({
-                name   => $name || undef,
-                size  => $size || undef,
-                colour  => $colour || undef,
-                sepulkarium_id => $sepulkarium_id,
-            });
-
-    $c->stash->{status_msg} = "Сепулька изменена";
-
-    $c->res->redirect($c->uri_for('list'));
-}
 
 =encoding utf8
 

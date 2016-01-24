@@ -9,6 +9,7 @@ __PACKAGE__->config(
     render_die => 1,
     CATALYST_VAR => 'c',
     ENCODING => 'utf-8',
+    WRAPPER => 'wrapper.tt2',
 );
 
 =head1 NAME

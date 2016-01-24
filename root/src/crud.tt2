@@ -1,8 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" [%#
-    %]"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
 [% META title = 'Сепулькарий' -%]
 
 <head>
@@ -17,7 +12,7 @@
 				<a href="[% c.uri_for('sepulkas/list').path_query %]">Сепульки</a>
 			</td>
 			<td>
-                <a href="[% c.uri_for('sepulkariums').path_query %]">Сепулькарии</a>
+                <a href="[% c.uri_for('sepulkariums/list').path_query %]">Сепулькарии</a>
             </td>
 		</tr>
 	</table>

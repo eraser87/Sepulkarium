@@ -1,4 +1,4 @@
-[% META title = 'Добавление сепульки' -%]
+[% META title = 'Добавление сепулькария' -%]
 
 <form method="post" action="[% c.uri_for(c.controller.action_for('add')) %]">
     <head>
@@ -6,7 +6,7 @@
     </head>
 
     <body>
-        [% INCLUDE 'sepulkas/edit_table.tt2' %]
+        [% INCLUDE 'sepulkariums/edit_table.tt2' %]
         <table>
             <tr>
                 <td><input type="submit" name="Submit" value="Добавить"></td>

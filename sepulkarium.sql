@@ -45,7 +45,7 @@ CREATE TABLE `sepulka` (
 
 LOCK TABLES `sepulka` WRITE;
 /*!40000 ALTER TABLE `sepulka` DISABLE KEYS */;
-INSERT INTO `sepulka` VALUES (1,'sep1','small','green',1),(2,'sep2','medium','red',1),(3,'sep3','big','blue',2);
+INSERT INTO `sepulka` VALUES (1,'Сепулька1','Маленькая','Зелёная',1),(2,'Сепулька2','Средняя','Красная',1),(3,'Сепулька3','Большая','Синяя',2);
 /*!40000 ALTER TABLE `sepulka` ENABLE KEYS */;
 ALTER TABLE `sepulka`
 ADD CONSTRAINT `sepulka_ibfk_2` FOREIGN KEY (`sepulkarium_id`) REFERENCES `sepulkarium` (`sepulkarium_id`) ON DELETE CASCADE ON UPDATE CASCADE;
@@ -59,7 +59,7 @@ DROP TABLE IF EXISTS `sepulkarium`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sepulkarium` (
-  `sepulkarium_id` int(11) NOT NULL,
+  `sepulkarium_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text,
   PRIMARY KEY (`sepulkarium_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -71,7 +71,7 @@ CREATE TABLE `sepulkarium` (
 
 LOCK TABLES `sepulkarium` WRITE;
 /*!40000 ALTER TABLE `sepulkarium` DISABLE KEYS */;
-INSERT INTO `sepulkarium` VALUES (1,'1st sepulkarium'),(2,'2nd sepulkarium');
+INSERT INTO `sepulkarium` VALUES (1,'Сепулькарий №1'),(2,'Сепулькарий №2');
 /*!40000 ALTER TABLE `sepulkarium` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
