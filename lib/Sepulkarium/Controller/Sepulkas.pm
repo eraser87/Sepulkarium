@@ -28,6 +28,7 @@ sub base :Chained('/') :PathPart('sepulkas') :CaptureArgs(0) {
     $c->stash(sepulkariums_resultset => $c->model('DB::Sepulkarium'));
 }
 
+
 =head2 list
 
 Вывод списка сепулек.
@@ -131,6 +132,7 @@ sub edit :Chained('object') :PathPart('edit') :Args(0) {
 
     $c->stash(template => 'sepulkas/edit.tt2') ;
 }
+
 
 =head2
 

@@ -6,11 +6,21 @@
 </head>
 
 <body>
-	<table>
+    <p>
+        <b>Сепу́льки</b> (польск. sepulki) — объекты невыясненной природы и назначения в рассказе «Путешествие четырнадцатое» Станислава Лема из серии «Звёздные дневники Ийона Тихого». Упоминаются также в его романе «Осмотр на месте».
+    </p>
+    <p>
+        <a href="https://ru.wikipedia.org/wiki/%D0%A1%D0%B5%D0%BF%D1%83%D0%BB%D1%8C%D0%BA%D0%B8">Сепульки в Википедии</a>
+    </p>
+    <p align = "center">
+        <b>Смотреть и редактировать:</b>
+    </p>
+	<table align = "center">
 		<tr>
 			<td>
 				<a href="[% c.uri_for('sepulkas/list').path_query %]">Сепульки</a>
 			</td>
+            <td></td>
 			<td>
                 <a href="[% c.uri_for('sepulkariums/list').path_query %]">Сепулькарии</a>
             </td>
